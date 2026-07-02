@@ -1,0 +1,185 @@
+<div id="rooms-page" class="tab-content active">
+    
+    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-wrap gap-4 items-center justify-between mb-8">
+        <div class="flex-1 min-w-[250px] relative">
+            <i class="fa solid fa-magnifying-glass absolute left-3 top-3.5 text-gray-400"></i>
+            <input type="text" placeholder="Tìm kiếm phòng, tiện nghi..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="flex gap-4 text-sm relative">
+            
+            <div class="border border-gray-200 p-2 rounded-lg bg-gray-50 cursor-pointer relative" onclick="document.getElementById('checkin-date-input').showPicker()">
+                <span class="text-xs text-gray-400 block uppercase font-bold">Nhận phòng</span>
+                <span id="checkin-display-text" class="font-medium text-gray-400">--/--/----</span>
+                <input type="date" id="checkin-date-input" class="absolute inset-0 opacity-0 cursor-pointer" onchange="updateCheckinDate(this.value)">
+            </div>
+
+            <div class="relative">
+                <div id="guest-btn" class="border border-gray-200 p-2 rounded-lg bg-gray-50 cursor-pointer" onclick="toggleGuestDropdown(event)">
+                    <span class="text-xs text-gray-400 block uppercase font-bold">Số khách</span>
+                    <span id="guest-display-text" class="font-medium text-gray-400">Chưa chọn khách</span>
+                </div>
+                
+                <div id="guest-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-50 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold text-gray-800 text-sm">Người lớn</p>
+                            <p class="text-xs text-gray-400">Từ 13 tuổi trở lên</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button type="button" onclick="changeGuest('adult', -1, event)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 font-bold">-</button>
+                            <span id="adult-count" class="font-semibold w-4 text-center">0</span>
+                            <button type="button" onclick="changeGuest('adult', 1, event)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 font-bold">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center border-t pt-3">
+                        <div>
+                            <p class="font-semibold text-gray-800 text-sm">Trẻ em</p>
+                            <p class="text-xs text-gray-400">Độ tuổi 2 - 12</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button type="button" onclick="changeGuest('child', -1, event)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 font-bold">-</button>
+                            <span id="child-count" class="font-semibold w-4 text-center">0</span>
+                            <button type="button" onclick="changeGuest('child', 1, event)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 font-bold">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="bg-pink-600 text-white px-6 rounded-lg font-medium hover:bg-blue-700">Cập nhật</button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="lg:col-span-2 space-y-6">
+            <div class="grid grid-cols-3 gap-2 rounded-xl overflow-hidden h-[350px]">
+                <div class="col-span-2 h-full">
+                    <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&auto=format&fit=crop&q=80" alt="Main Room" class="w-full h-full object-cover">
+                </div>
+                <div class="grid grid-rows-2 gap-2 h-full">
+                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&auto=format&fit=crop&q=80" alt="Bathroom" class="w-full h-full object-cover">
+                </div>
+                <div class="relative h-full">
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&auto=format&fit=crop&q=80" alt="Detail" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-semibold text-sm cursor-pointer">+12 Ảnh </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-start">
+                <div>
+                    <h1 class="text-3xl font-bold text-pink-900">Grand Ocean View Suite</h1>
+                    <p class="text-sm text-gray-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Phía Nam, Tầng 14 — SkyLight Hotel Resort</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 border border-gray-200 rounded-full hover:bg-gray-50"><i class="fa-regular fa-share-nodes"></i></button>
+                    <button class="p-2 border border-gray-200 rounded-full hover:bg-gray-50 text-red-500"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xs uppercase tracking-wider font-bold text-gray-400 mb-3">Tiện nghi & Dịch vụ</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm font-medium">
+                    <div class="flex items-center space-x-2 text-gray-700"><i class="fa-solid fa-wifi text-blue-600"></i> <span>WiFi tốc độ cao</span></div>
+                    <div class="flex items-center space-x-2 text-gray-700"><i class="fa-solid fa-water text-blue-600"></i> <span>Hồ bơi vô cực</span></div>
+                    <div class="flex items-center space-x-2 text-gray-700"><i class="fa-solid fa-snowflake text-blue-600"></i> <span>Điều hòa nhiệt độ</span></div>
+                    <div class="flex items-center space-x-2 text-gray-700"><i class="fa-solid fa-bell text-blue-600"></i> <span>Lễ tân 24/7</span></div>
+                </div>
+            </div>
+
+            <div class="border-t pt-6">
+                <h3 class="text-xs uppercase tracking-wider font-bold text-gray-400 mb-2">Về căn hộ</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Trải nghiệm sự sang trọng ven biển trong căn hộ Grand Ocean View rộng 85m2. Không gian được thiết kế tỉ mỉ, kết hợp hoàn hảo giữa kiến trúc tinh tế và sự thoải mái tự nhiên, mang lại tầm nhìn tuyệt đẹp ra đường chân trời.
+                </p>
+            </div>
+
+            <div class="border-t pt-6 space-y-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xl font-bold">4.8 / 5.0</span>
+                        <div class="text-yellow-400 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-400">(124 Đánh giá)</span>
+                    </div>
+                    <button onclick="toggleReviewForm(event)" class="text-sm text-blue-600 underline hover:text-blue-800 font-medium">Viết đánh giá</button>
+                </div>
+
+                <div id="review-form-container" class="hidden bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm space-y-3 mt-3">
+                    <h4 class="font-bold text-gray-700">Viết bình luận của bạn</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" id="review-name" placeholder="Nhập họ và tên..." class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600">
+                    </div>
+                    <textarea id="review-content" rows="3" placeholder="Chia sẻ trải nghiệm của bạn về căn hộ..." class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600"></textarea>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" onclick="toggleReviewForm(event)" class="px-4 py-1.5 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400">Hủy</button>
+                        <button type="button" onclick="submitReview()" class="px-4 py-1.5 bg-pink-600 text-white rounded-lg font-medium hover:bg-pink-700">Gửi đánh giá</button>
+                    </div>
+                </div>
+
+                <div id="reviews-list" class="space-y-4 mt-4">
+                    
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-sm">
+                        <div class="flex justify-between font-semibold mb-1">
+                            <span>Phan Viết Trung</span>
+                            <span class="text-xs text-gray-400">THÁNG 6 NĂM 2026</span>
+                        </div>
+                        <p class="text-gray-600 italic">"Dịch vụ chu đáo ở đây vượt trội hơn hẳn so với bất kỳ nơi nào tôi từng đến. Thiết kế và thực hiện hoàn hảo đến từng chi tiết."</p>
+                    </div>
+
+                </div> </div> ```
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 h-fit space-y-6">
+            <div class="flex justify-between items-end">
+                <div>
+                    <span class="text-2xl font-bold text-gray-900">$1,250</span>
+                    <span class="text-sm text-gray-400">/ Đêm</span>
+                </div>
+                <span class="text-sm text-gray-600"><i class="fa-solid fa-star text-yellow-400"></i> 4.8</span>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg p-3 grid grid-cols-2 gap-2 text-xs bg-gray-50">
+                <div>
+                    <span class="text-gray-400 uppercase font-bold block">Nhận phòng</span>
+                    <span class="font-semibold text-gray-700">10/12/2024</span>
+                </div>
+                <div class="border-l pl-2">
+                    <span class="text-gray-400 uppercase font-bold block">Trả phòng</span>
+                    <span class="font-semibold text-gray-700">10/15/2024</span>
+                </div>
+            </div>
+
+            <button onclick="switchTab('payment')" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-800 transition-all uppercase tracking-wider text-sm">
+                Đặt phòng ngay
+            </button>
+
+            <div class="space-y-2 text-sm border-t pt-4">
+                <div class="flex justify-between text-gray-600"><span>$1,250 × 3 đêm</span><span>$3,750</span></div>
+                <div class="flex justify-between text-gray-600"><span>Phí dịch vụ</span><span>$120</span></div>
+                <div class="flex justify-between text-gray-600"><span>Thuế phí</span><span>$45</span></div>
+                <div class="flex justify-between font-bold text-base text-gray-900 border-t pt-2 mt-2">
+                    <span>Tổng cộng</span><span>$3,915</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 border-t pt-8">
+        <h2 class="text-xl font-bold mb-6">Các lựa chọn thay thế được đề xuất</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?w=400&auto=format&fit=crop&q=80" alt="Royal" class="w-full h-40 object-cover">
+                <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Royal Garden Suite</span><span class="text-blue-600">$950/nt</span></div></div>
+            </div>
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&auto=format&fit=crop&q=80" alt="Skyline" class="w-full h-40 object-cover">
+                <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Skyline Penthouse</span><span class="text-blue-600">$2,100/nt</span></div></div>
+            </div>
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&auto=format&fit=crop&q=80" alt="Zen" class="w-full h-40 object-cover">
+                <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Zen Deluxe Room</span><span class="text-blue-600">$660/nt</span></div></div>
+            </div>
+        </div>
+    </div>
+</div>
