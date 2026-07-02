@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="QLKH.css">
+    <title>Hệ Thống Quản Lý Khách Sạn - Khách Hàng</title>
+</head>
+<body>
+
+    <header>
+        <h1>Hệ Thống Quản Lý Khách Sạn Dashboard</h1>
+        <p>Giải pháp quản lý phòng và khách hàng tối ưu (Demo Mockup dữ liệu)</p>
+    </header>
+
+    <nav>
+        <a href="index.html" class="kich-hoat">👤 Quản Lý Khách Hàng</a>
+        <a href="booking.html">🏨 Quản Lý Đặt Phòng</a>
+    </nav>
+
+    <div class="khung-chua">
+        <section class="the-chuc-nang">
+            <h2>👤 Quản Lý Khách Hàng</h2>
+            
+            <form id="formKhachHang">
+                <div class="o-nhap">
+                    <label for="tenKhach">Họ và Tên</label>
+                    <input type="text" id="tenKhach" class="o-chu" placeholder="Ví dụ: Nguyễn Văn A" required>
+                </div>
+                
+                <div class="hang-nhap">
+                    <div class="o-nhap">
+                        <label for="sdtKhach">Số Điện Thoại</label>
+                        <input type="tel" id="sdtKhach" class="o-chu" placeholder="0912xxxxxx" required>
+                    </div>
+                    <div class="o-nhap">
+                        <label for="cccdKhach">Số CMND/CCCD</label>
+                        <input type="text" id="cccdKhach" class="o-chu" placeholder="001xxxxxxxx" required>
+                    </div>
+                </div>
+
+                <div class="o-nhap">
+                    <label for="emailKhach">Email</label>
+                    <input type="email" id="emailKhach" class="o-chu" placeholder="nguyenvana@gmail.com">
+                </div>
+
+                <button type="submit" class="nut">Thêm Khách Hàng</button>
+            </form>
+
+            <div class="bang-cuon">
+                <h3>Danh sách tài khoản khách</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã KH</th>
+                            <th>Họ Tên</th>
+                            <th>Điện Thoại</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="thanBangKhach">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 1. Khởi tạo dữ liệu giả lập ban đầu (Mock Data)
+        let danhSachKhach = [
+            { id: "KH001", ten: "Trần Thị B", sdt: "0905123456", cccd: "001095001234", email: "thib@gmail.com" },
+            { id: "KH002", ten: "Lê Văn C", sdt: "0987654321", cccd: "001095005678", email: "vanc@gmail.com" }
+        ];
+
+        let demKhachHang = 2; 
+
+        // 2. Hàm vẽ dữ liệu lên bảng HTML
+        function hienThiKhachHang() {
+            const thanBang = document.getElementById("thanBangKhach");
+            thanBang.innerHTML = "";
+
+            danhSachKhach.forEach((khach) => {
+                thanBang.innerHTML += `
+                    <tr>
+                        <td>#${khach.id}</td>
+                        <td><b>${khach.ten}</b></td>
+                        <td>${khach.sdt}</td>
+                        <td><button class="nut-xoa" onclick="xoaKhachHang('${khach.id}')">Xóa</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // 3. Xử lý sự kiện thêm khách hàng mới
+        document.getElementById("formKhachHang").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            demKhachHang++;
+            const khachMoi = {
+                id: "KH" + String(demKhachHang).padStart(3, '0'),
+                ten: document.getElementById("tenKhach").value,
+                sdt: document.getElementById("sdtKhach").value,
+                cccd: document.getElementById("cccdKhach").value,
+                email: document.getElementById("emailKhach").value,
+            };
+
+            danhSachKhach.push(khachMoi);
+            hienThiKhachHang();
+            this.reset();
+            alert("Thêm khách hàng thành công!");
+        });
+
+        // 4. Chức năng Xóa Khách Hàng
+        function xoaKhachHang(id) {
+            if(confirm("Bạn có chắc chắn muốn xóa khách hàng này không?")) {
+                danhSachKhach = danhSachKhach.filter(kh => kh.id !== id);
+                hienThiKhachHang();
+            }
+        }
+
+        // Khởi chạy hệ thống khi load trang lần đầu
+        window.onload = function() {
+            hienThiKhachHang();
+        }
+    </script>
+</body>
+</html>

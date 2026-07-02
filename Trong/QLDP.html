@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý Khách Sạn - Đặt Phòng</title>
+    <link rel="stylesheet" href="QLDP.css">
+</head>
+<body>
+
+    <header>
+        <h1>Hệ Thống Quản Lý Khách Sạn Dashboard</h1>
+        <p>Giải pháp quản lý phòng và khách hàng tối ưu (Demo Mockup dữ liệu)</p>
+    </header>
+
+    <nav>
+        <a href="index.html">👤 Quản Lý Khách Hàng</a>
+        <a href="booking.html" class="kich-hoat">🏨 Quản Lý Đặt Phòng</a>
+    </nav>
+
+    <div class="khung-chua">
+        <section class="the-chuc-nang">
+            <h2>🏨 Quản Lý Đặt Phòng</h2>
+            
+            <form id="formDatPhong">
+                <div class="o-nhap">
+                    <label for="chonKhach">Chọn Khách Hàng</label>
+                    <select id="chonKhach" class="o-chu" required>
+                        <option value="">-- Chọn khách hàng đã có tài khoản --</option>
+                        <option value="Trần Thị B">Trần Thị B (#KH001)</option>
+                        <option value="Lê Văn C">Lê Văn C (#KH002)</option>
+                    </select>
+                </div>
+
+                <div class="hang-nhap">
+                    <div class="o-nhap">
+                        <label for="chonPhong">Chọn Phòng Trống</label>
+                        <select id="chonPhong" class="o-chu" required></select>
+                    </div>
+                    <div class="o-nhap">
+                        <label for="loaiPhong">Loại Phòng</label>
+                        <input type="text" id="loaiPhong" class="o-chu" readonly style="background-color: #eee;" placeholder="Chọn phòng để xem loại">
+                    </div>
+                </div>
+
+                <div class="hang-nhap">
+                    <div class="o-nhap">
+                        <label for="ngayNhan">Ngày Nhận Phòng</label>
+                        <input type="date" id="ngayNhan" class="o-chu" required>
+                    </div>
+                    <div class="o-nhap">
+                        <label for="ngayTra">Ngày Trả Phòng</label>
+                        <input type="date" id="ngayTra" class="o-chu" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="nut">Xác Nhận Đặt Phòng</button>
+            </form>
+
+            <div class="bang-cuon">
+                <h3>Trạng thái đặt phòng thực tế</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Số Phòng</th>
+                            <th>Loại</th>
+                            <th>Khách Hàng</th>
+                            <th>Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="thanBangPhong"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 1. Khởi tạo danh sách phòng giả lập (Mock Data)
+        let danhSachPhong = [
+            { id: "P.101", loai: "VIP (Single)", trangThai: "Đang ở", khach: "Trần Thị B" },
+            { id: "P.102", loai: "Tiêu chuẩn", trangThai: "Sẵn sàng", khach: "-- Trống --" },
+            { id: "P.103", loai: "Phòng Đôi (Double)", trangThai: "Sẵn sàng", khach: "-- Trống --" },
+            { id: "P.201", loai: "VIP (Single)", trangThai: "Sẵn sàng", khach: "-- Trống --" }
+        ];
+
+        // 2. Hàm vẽ dữ liệu phòng lên bảng và menu lựa chọn (Dropdown)
+        function hienThiPhong() {
+            const thanBang = document.getElementById("thanBangPhong");
+            const menuChonPhong = document.getElementById("chonPhong");
+            
+            thanBang.innerHTML = "";
+            menuChonPhong.innerHTML = '<option value="">-- Chọn phòng trống --</option>';
+
+            danhSachPhong.forEach((phong) => {
+                let lopNhan = phong.trangThai === "Sẵn sàng" ? "nhan-phong-trong" : "nhan-co-khach";
+                
+                // Vẽ vào bảng danh sách
+                thanBang.innerHTML += `
+                    <tr>
+                        <td><b>${phong.id}</b></td>
+                        <td>${phong.loai}</td>
+                        <td>${phong.khach}</td>
+                        <td><span class="nhan ${lopNhan}">${phong.trangThai}</span></td>
+                    </tr>
+                `;
+
+                // Nếu phòng còn trống thì mới đưa vào ô chọn (Dropdown)
+                if(phong.trangThai === "Sẵn sàng") {
+                    menuChonPhong.innerHTML += `<option value="${phong.id}">${phong.id}</option>`;
+                }
+            });
+        }
+
+        // 3. Tự động hiện Loại phòng tương ứng khi người dùng click chọn Số phòng
+        document.getElementById("chonPhong").addEventListener("change", function() {
+            const maPhongDuocChon = this.value;
+            const phongTimThay = danhSachPhong.find(p => p.id === maPhongDuocChon);
+            const oHienLoaiPhong = document.getElementById("loaiPhong");
+            
+            if(phongTimThay) {
+                oHienLoaiPhong.value = phongTimThay.loai;
+            } else {
+                oHienLoaiPhong.value = "";
+            }
+        });
+
+        // 4. Xử lý sự kiện bấm nút Đặt Phòng
+        document.getElementById("formDatPhong").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const tenKhachHang = document.getElementById("chonKhach").value;
+            const maPhong = document.getElementById("chonPhong").value;
+            
+            // Tìm phòng trong mảng và cập nhật lại trạng thái thành "Đang ở"
+            let viTriPhong = danhSachPhong.findIndex(p => p.id === maPhong);
+            if(viTriPhong !== -1) {
+                danhSachPhong[viTriPhong].trangThai = "Đang ở";
+                danhSachPhong[viTriPhong].khach = tenKhachHang;
+                
+                hienThiPhong(); // Cập nhật lại giao diện bảng và ô chọn
+                this.reset();   // Reset xóa hết dữ liệu form vừa nhập
+                document.getElementById("loaiPhong").value = ""; // Xóa chữ trong ô loại phòng readonly
+                alert(`Đặt phòng ${maPhong} cho khách hàng ${tenKhachHang} thành công!`);
+            }
+        });
+
+        // Tự động chạy khi mở trang
+        window.onload = function() {
+            hienThiPhong();
+            // Tự động điền ngày hôm nay vào ô Ngày nhận phòng cho tiện
+            const homNay = new Date().toISOString().split('T')[0];
+            document.getElementById("ngayNhan").value = homNay;
+        }
+    </script>
+</body>
+</html>
