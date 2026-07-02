@@ -1,0 +1,14 @@
+/* Thiết lập phông chữ mặc định cho toàn bộ trang web */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ẩn tất cả các phân đoạn nội dung tab theo mặc định */
+.tab-content {
+  display: none;
+}
+
+/* Chỉ hiển thị phân đoạn nội dung nào có thêm class 'active' */
+.tab-content.active {
+  display: block;
+}

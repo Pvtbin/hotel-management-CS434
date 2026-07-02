@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLight Hotel</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-12">
+                <span class="text-2xl font-bold tracking-wide text-blue-900 cursor-pointer" onclick="switchTab('rooms')">SkyLight Hotel</span>
+                <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                    <button onclick="switchTab('payment')" class="nav-btn hover:text-blue-600">Thanh toán </button>
+                    <button onclick="switchTab('rooms')" class="nav-btn text-blue-600 font-semibold border-b-2 border-blue-600 pb-1" id="default-nav">Phòng </button>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-500 cursor-pointer hover:underline" onclick="switchTab('profile')">Hỗ trợ </span>
+                <button onclick="switchTab('rooms')" class="bg-black text-white px-4 py-2 text-xs font-semibold rounded tracking-wider uppercase hover:bg-gray-800">Đặt phòng mới</button>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="w-8 h-8 rounded-full border cursor-pointer" onclick="switchTab('profile')">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        <div data-include="PHONG.html"></div>
+        <div data-include="THANHTOAN.html"></div>
+        <div data-include="TCN.html"></div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 mt-auto text-xs text-gray-500 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-6">
+                <span class="font-bold text-gray-900 tracking-wider text-sm">SkyLight Hotel</span>
+                <a href="#" class="hover:underline">Chính sách bảo mật</a>
+                <a href="#" class="hover:underline">Điều khoản dịch vụ</a>
+                <a href="#" class="hover:underline">Hướng dẫn vận hành</a>
+                <a href="#" class="hover:underline">Liên hệ hỗ trợ</a>
+            </div>
+            <div>
+                © 2026 SkyLight Hotel Hospitality. Bảo lưu mọi quyền.
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('[data-include]').forEach(async (el) => {
+                const file = el.getAttribute('data-include');
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        el.outerHTML = await response.text();
+                    }
+                } catch (err) {
+                    console.error("Lỗi đồng bộ file HTML:", err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

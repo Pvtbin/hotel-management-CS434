@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng Ký - SkyLight Hotel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#384f83",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed": "#3f001a",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "primary-container": "#d8206f",
+                        "outline-variant": "#e1bdc5",
+                        "on-tertiary-fixed": "#191c1e",
+                        "secondary": "#475d92",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "primary": "#b10057",
+                        "surface-tint": "#ba005c",
+                        "surface-dim": "#cbdbf5",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary": "#575a5c",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#acc3fe",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#8f0045",
+                        "surface-container-high": "#dce9ff",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#ffb1c5",
+                        "on-primary-container": "#fff6f6",
+                        "on-tertiary-container": "#f7f8fa",
+                        "on-background": "#0b1c30",
+                        "tertiary-container": "#707274",
+                        "primary-fixed": "#ffd9e1",
+                        "inverse-primary": "#ffb1c5",
+                        "surface-container-highest": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "outline": "#8d6f76",
+                        "tertiary-fixed": "#e1e2e4",
+                        "on-secondary-fixed-variant": "#2e4578",
+                        "on-secondary-fixed": "#001945",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#d9e2ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#5a4046",
+                        "inverse-surface": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "4px",
+                        "stack-lg": "32px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "label-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(225, 189, 197, 0.3);
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #b10057;
+            box-shadow: 0 0 0 2px rgba(177, 0, 87, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface border-b border-surface-variant shadow-sm h-20">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-base">
+<span class="font-headline-md text-headline-md font-bold text-primary">SkyLight Hotel</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200" href="#">Phòng Nghỉ</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200" href="#">Tiện Nghi</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200" href="#">Ưu Đãi</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200" href="#">Liên Hệ</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-secondary font-medium font-label-md text-label-md hover:text-primary transition-colors" href="#">Đăng Nhập</a>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md font-bold hover:opacity-90 transition-all shadow-md">
+                    Đăng Ký
+                </button>
+</div>
+</nav>
+</header>
+<main class="min-h-screen pt-20 flex items-center justify-center relative overflow-hidden">
+<!-- Atmospheric Background Elements -->
+<div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none">
+<div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-primary-container blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-secondary-container blur-[120px]"></div>
+</div>
+<section class="w-full max-w-container-max px-margin-desktop py-stack-lg flex flex-col md:flex-row items-center gap-12">
+<!-- Left Side: Visual Content (Asymmetric Layout) -->
+<div class="hidden lg:flex flex-col w-1/2 space-y-6">
+<h1 class="font-display-lg text-display-lg text-on-surface">
+                    Khám phá <span class="text-primary">Sự Sang Trọng</span> Tuyệt Đối
+                </h1>
+<p class="text-body-lg font-body-lg text-secondary max-w-md leading-relaxed">
+                    Gia nhập cộng đồng khách hàng thân thiết của SkyLight Hotel để nhận những ưu đãi đặc quyền và trải nghiệm dịch vụ nghỉ dưỡng đẳng cấp 5 sao.
+                </p>
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl transform rotate-1 group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-end luxury hotel suite with floor-to-ceiling windows overlooking a serene city skyline at dusk. The interior features deep navy velvet accents, minimalist mahogany furniture, and soft magenta mood lighting. The aesthetic is sophisticated and modern, reflecting a premium hospitality brand's corporate luxury style. Soft ambient light illuminates the space, creating a sense of tranquility and exclusivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUXyR_IYjjCF8mkTSyqTHULbwRc9mAP54weTkTERl5lp4bY2X1eIvK-8SZmpmG_iO20G83F18uJSgI3nshK4_JZaFeZ9PiV-syjjgVHqFofu5CdvIrzfiooKZXXlaGTn4eq4aH9GWBkHEdjZnZd92QzrqMSkD61ZwnXxdnDkjo3ktsZeJR-_BYDGk65sfPZ-QonWdmMCNfDc636zaJECVPjehQ_WTwwBdydINij8MWW0myhXcV9K7rBFSOP7C4HOov_S4ijNpcuH0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-on-tertiary">
+<p class="font-label-md text-label-md uppercase tracking-widest opacity-80 mb-1">Trải nghiệm</p>
+<p class="font-headline-md text-headline-md">SkyLight Excellence</p>
+</div>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="w-full lg:w-1/2 flex justify-center">
+<div class="glass-panel w-full max-w-[520px] p-8 md:p-10 rounded-xl shadow-xl">
+<div class="mb-8 text-center lg:text-left">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Tạo tài khoản mới</h2>
+<p class="text-secondary font-body-md text-body-md">Chào mừng bạn đến với SkyLight Hotel</p>
+</div>
+<form class="space-y-5" onsubmit="return false">
+<!-- Full Name -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="fullname">Họ và tên</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all" id="fullname" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Email -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="email">Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
+<input class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all" id="email" placeholder="example@gmail.com" type="email"/>
+</div>
+</div>
+<!-- Phone -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="phone">Số điện thoại</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">call</span>
+<input class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all" id="phone" placeholder="0901234567" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Mật khẩu</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-11 pr-12 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="confirm_password">Xác nhận mật khẩu</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock_reset</span>
+<input class="w-full pl-11 pr-12 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all" id="confirm_password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" id="terms" type="checkbox"/>
+<label class="text-label-sm font-label-sm text-secondary" for="terms">
+                                Tôi đồng ý với <a class="text-primary font-bold" href="#">Điều khoản dịch vụ</a> và <a class="text-primary font-bold" href="#">Chính sách bảo mật</a> của SkyLight Hotel.
+                            </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-headline-md text-headline-md font-bold shadow-lg hover:brightness-110 active:scale-[0.99] transition-all flex justify-center items-center gap-2" type="submit">
+                            Đăng Ký Ngay
+                        </button>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant"></div></div>
+<div class="relative flex justify-center text-label-sm font-label-sm uppercase tracking-widest"><span class="bg-white px-4 text-outline">Hoặc</span></div>
+</div>
+<!-- Login link -->
+<div class="text-center">
+<p class="text-body-md font-body-md text-secondary">
+                                Đã có tài khoản? 
+                                <a class="text-primary font-bold hover:underline transition-all" href="#">Đăng nhập</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-on-surface text-surface py-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+<span class="font-headline-lg text-headline-lg font-black text-surface">SkyLight Hotel</span>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-label-md text-label-md text-surface-variant hover:text-primary-fixed transition-colors underline decoration-primary-fixed-dim/30" href="#">Chính sách bảo mật</a>
+<a class="font-label-md text-label-md text-surface-variant hover:text-primary-fixed transition-colors" href="#">Điều khoản dịch vụ</a>
+<a class="font-label-md text-label-md text-surface-variant hover:text-primary-fixed transition-colors" href="#">Hỗ trợ khách hàng</a>
+<a class="font-label-md text-label-md text-surface-variant hover:text-primary-fixed transition-colors" href="#">Về chúng tôi</a>
+</div>
+</div>
+<div class="w-full border-t border-secondary/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-md text-label-md text-surface-variant opacity-70">© 2024 SkyLight Hotel. Tất cả quyền được bảo lưu.</p>
+<div class="flex items-center gap-6">
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3l-.5 3H13v6.8c4.56-.93 8-4.96 8-9.8z"></path></svg>
+</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12.31 3.02c3.3 0 3.69.01 5 .07 1.21.05 1.86.26 2.3.43.58.22 1 .49 1.44.92.43.43.7.86.92 1.44.17.44.38 1.09.43 2.3.06 1.31.07 1.7.07 5s-.01 3.69-.07 5c-.05 1.21-.26 1.86-.43 2.3-.22.58-.49 1-.92 1.44-.43.43-.86.7-1.44.92-.44.17-1.09.38-2.3.43-1.31.06-1.7.07-5.01.07s-3.69-.01-5-.07c-1.21-.05-1.86-.26-2.3-.43-.58-.22-1-.49-1.44-.92-.43-.43-.7-.86-.92-1.44-.17-.44-.38-1.09-.43-2.3-.06-1.31-.07-1.7-.07-5s.01-3.69.07-5c.05-1.21.26-1.86.43-2.3.22-.58.49-1 .92-1.44.43-.43.86-.7 1.44-.92.44-.17 1.09-.38 2.3-.43 1.31-.07 1.7-.07 5-.07zm0-1.02c-3.36 0-3.78.01-5.1.07-1.31.06-2.21.27-3 .58a5.9 5.9 0 00-2.14 1.39A5.9 5.9 0 00.68 5.18c-.31.79-.52 1.69-.58 3C.04 9.53.03 9.95.03 13.31s.01 3.78.07 5.1c.06 1.31.27 2.21.58 3a5.9 5.9 0 001.39 2.14 5.9 5.9 0 002.14 1.39c.79.31 1.69.52 3 .58 1.32.06 1.74.07 5.1.07s3.78-.01 5.1-.07c1.31-.06 2.21-.27 3-.58a5.9 5.9 0 002.14-1.39 5.9 5.9 0 001.39-2.14c.31-.79.52-1.69.58-3 .06-1.32.07-1.74.07-5.1s-.01-3.78-.07-5.1c-.06-1.31-.27-2.21-.58-3a5.9 5.9 0 00-1.39-2.14 5.9 5.9 0 00-2.14-1.39c-.79-.31-1.69-.52-3-.58-1.32-.06-1.74-.07-5.1-.07zM12.31 7.3a6.01 6.01 0 100 12.02 6.01 6.01 0 000-12.02zm0 10a3.99 3.99 0 110-7.98 3.99 3.99 0 010 7.98zm6.26-11.23a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for form validation states
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Simple visibility toggle for password
+        const togglePass = document.querySelector('button[type="button"]');
+        const passInput = document.getElementById('password');
+        if (togglePass && passInput) {
+            togglePass.addEventListener('click', () => {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                togglePass.querySelector('span').textContent = isPass ? 'visibility_off' : 'visibility';
+            });
+        }
+    </script>
+</body></html>
