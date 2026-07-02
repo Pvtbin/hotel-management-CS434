@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SkyLight Hotel | Trang Chủ</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="js/app.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #b10057;
+            --on-primary: #ffffff;
+        }
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- 1. NAVIGATION BAR (Thanh điều hướng chính) -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-primary tracking-wider">SKYLIGHT</a>
+
+            <!-- Menu liên kết đến các trang con trong thư mục pages/ -->
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="index.html" class="text-primary border-b-2 border-primary py-2">Trang Chủ</a>
+                <a href="pages/rooms.html" class="text-slate-600 hover:text-primary py-2 transition-colors">Hạng Phòng</a>
+                <a href="pages/offers.html" class="text-slate-600 hover:text-primary py-2 transition-colors">Ưu Đãi</a>
+                <a href="pages/booking.html" class="text-slate-600 hover:text-primary py-2 transition-colors">Đặt Phòng</a>
+            </div>
+
+            <!-- Nút điều hướng Đăng Nhập / Đăng Ký -->
+            <div class="flex items-center gap-4">
+                <a href="pages/login.html" class="text-sm font-semibold text-slate-700 hover:text-primary transition-colors">Đăng Nhập</a>
+                <a href="pages/register.html" class="bg-primary text-white px-5 py-2.5 rounded-xl font-bold hover:bg-opacity-90 transition-all shadow-sm">Đăng Ký</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <header class="relative h-[650px] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7b9BaDm37tvqUVMBSo1w4MJEfrwHlhOZLZIj3u28vlIBs08tFAWMuizy1UZ6nsqs1N8zUT7CpeZaEqvB1zejWDd7kFwiOlgsRz4vQZMbDT06XO5n6MERqKSVOivkXg-RHdxFEqM3_pGWgoM3Kw99hIGyXDVTDd1DscqNKD6acTPbSpmIVVv017Bp-n9K9QUUxm7d83DxheNTTYnRHUYr4_cMSBt6jWwnpm0BweweAE1ffwQi_B0CF')">
+        <div class="absolute inset-0 bg-slate-900/40"></div>
+        
+        <div class="relative z-10 text-center text-white px-6 max-w-3xl flex flex-col items-center">
+            <span class="text-sm uppercase tracking-widest font-semibold bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-sm mb-4">Chào mừng đến với SkyLight</span>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">Trải Nghiệm Kỳ Nghỉ Thượng Lưu Tại Trung Tâm Thành Phố</h1>
+            
+            <!-- Nút CTA chính dẫn trực tiếp sang trang Tra cứu đặt phòng -->
+            <a href="pages/booking.html" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg">
+                <span class="material-symbols-outlined">calendar_today</span> Đặt Phòng Ngay
+            </a>
+        </div>
+    </header>
+
+    <!-- 3. QUICK PREVIEW SECTION -->
+    <main class="max-w-7xl mx-auto px-6 py-20 space-y-24">
+        <!-- Xem trước hạng phòng -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-200 pb-8">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">Không Gian Nghỉ Dưỡng Sang Trọng</h2>
+                <p class="text-slate-500">Hệ thống phòng Suite và Deluxe chuẩn 5 sao quốc tế.</p>
+            </div>
+            <a href="pages/rooms.html" class="text-primary font-bold flex items-center gap-1 hover:underline group">
+                Xem tất cả hạng phòng 
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+            </a>
+        </div>
+
+        <!-- Xem trước ưu đãi -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-200 pb-8">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">Chương Trình Ưu Đãi Độc Quyền</h2>
+                <p class="text-slate-500">Đăng ký thành viên hội viên nhận ngay chiết khấu đặt phòng sớm.</p>
+            </div>
+            <a href="pages/offers.html" class="text-primary font-bold flex items-center gap-1 hover:underline group">
+                Khám phá ưu đãi 
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm">
+            <p>© 2026 SkyLight Hotel. Thiết kế đồng bộ hệ thống Website.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
