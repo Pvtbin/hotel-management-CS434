@@ -5,16 +5,25 @@
             <h2 class="text-2xl font-bold text-gray-900 border-b pb-4">Xác nhận thanh toán</h2>
             <div class="space-y-4">
                 <div class="flex justify-between text-sm text-gray-600">
-                    <span>Giá phòng (3 đêm)</span>
-                    <span class="font-medium text-gray-900">12.450.000 ₫</span>
+                    <span id="payment-room-text">Giá phòng (0 đêm)</span>
+                    <span id="payment-room-price"
+                        class="font-medium text-gray-900">
+                    0 $
+                    </span>
                 </div>
                 <div class="flex justify-between text-sm text-gray-600 border-b pb-4">
                     <span>Phí dịch vụ & Thuế (10%)</span>
-                    <span class="font-medium text-gray-900">1.245.000 ₫</span>
+                    <span id="payment-fee"
+                        class="font-medium text-gray-900">
+                    0 $
+                    </span>
                 </div>
                 <div class="flex justify-between items-center pt-2">
                     <span class="text-lg font-bold text-gray-900">Tổng cộng</span>
-                    <span class="text-2xl font-bold text-blue-600">13.695.000 ₫</span>
+                    <span id="payment-total"
+                        class="text-2xl font-bold text-blue-600">
+                    0 $
+                    </span>
                 </div>
             </div>
         </div>
@@ -22,27 +31,29 @@
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
             <h3 class="text-xs uppercase tracking-wider font-bold text-gray-400">Phương thức thanh toán</h3>
             <div class="space-y-3">
-                <label class="flex items-center justify-between p-4 border rounded-xl bg-blue-50/50 border-blue-200 cursor-pointer">
+                <label class="payment-card flex items-center justify-between p-4 border rounded-xl bg-blue-50/50 border-blue-200 cursor-pointer transition-transform duration-300 hover:scale-105">
                     <div class="flex items-center space-x-3">
-                        <input type="radio" name="payment-method" checked class="text-blue-600 focus:ring-blue-500">
+                        <input type="radio" name="payment-method" value="credit" checked onclick="handlePaymentMethodChange()" class="text-blue-600 focus:ring-blue-500">
                         <span class="text-sm font-medium text-gray-800"><i class="fa-regular fa-credit-card mr-2"></i>Thẻ tín dụng / Ghi nợ</span>
                     </div>
                 </label>
-                <label class="flex items-center justify-between p-4 border rounded-xl border-gray-200 hover:bg-gray-50 cursor-pointer">
+                
+                <label class="payment-card flex items-center justify-between p-4 border rounded-xl border-gray-200 hover:bg-gray-50 cursor-pointer transition-transform duration-300 hover:scale-105">
                     <div class="flex items-center space-x-3">
-                        <input type="radio" name="payment-method" class="text-blue-600 focus:ring-blue-500">
+                        <input type="radio" name="payment-method" value="bank" onclick="handlePaymentMethodChange()" class="text-blue-600 focus:ring-blue-500">
                         <span class="text-sm font-medium text-gray-800"><i class="fa-solid fa-building-columns mr-2"></i>Chuyển khoản ngân hàng</span>
                     </div>
                 </label>
-                <label class="flex items-center justify-between p-4 border rounded-xl border-gray-200 hover:bg-gray-50 cursor-pointer">
+                
+                <label class="payment-card flex items-center justify-between p-4 border rounded-xl border-gray-200 hover:bg-gray-50 cursor-pointer transition-transform duration-300 hover:scale-105">
                     <div class="flex items-center space-x-3">
-                        <input type="radio" name="payment-method" class="text-blue-600 focus:ring-blue-500">
+                        <input type="radio" name="payment-method" value="wallet" onclick="handlePaymentMethodChange()" class="text-blue-600 focus:ring-blue-500">
                         <span class="text-sm font-medium text-gray-800"><i class="fa-solid fa-wallet mr-2"></i>Ví điện tử (Momo/ZaloPay)</span>
                     </div>
                 </label>
             </div>
 
-            <button onclick="alert('Xác nhận đặt phòng thành công thành công! Cảm ơn bạn đã lựa chọn Lumière Grand.')" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 uppercase text-xs tracking-wider">
+            <button onclick="alert('Xác nhận đặt phòng thành công thành công! Cảm ơn bạn đã lựa chọn SkyLight Hotel.')" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-800 uppercase text-xs tracking-wider transition-transform duration-300 hover:scale-105">
                 Xác nhận thanh toán
             </button>
         </div>

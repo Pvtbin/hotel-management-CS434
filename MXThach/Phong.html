@@ -13,6 +13,25 @@
                 <input type="date" id="checkin-date-input" class="absolute inset-0 opacity-0 cursor-pointer" onchange="updateCheckinDate(this.value)">
             </div>
 
+            <div class="border border-gray-200 p-2 rounded-lg bg-gray-50 cursor-pointer relative"
+                onclick="document.getElementById('checkout-date-input').showPicker()">
+
+                <span class="text-xs text-gray-400 block uppercase font-bold">
+                    Trả phòng
+                </span>
+
+                <span id="checkout-display-text"
+                    class="font-medium text-gray-400">
+                    --/--/----
+                </span>
+
+                <input
+                    type="date"
+                    id="checkout-date-input"
+                    class="absolute inset-0 opacity-0 cursor-pointer"
+                    onchange="updateCheckoutDate(this.value)">
+            </div>
+
             <div class="relative">
                 <div id="guest-btn" class="border border-gray-200 p-2 rounded-lg bg-gray-50 cursor-pointer" onclick="toggleGuestDropdown(event)">
                     <span class="text-xs text-gray-400 block uppercase font-bold">Số khách</span>
@@ -45,7 +64,13 @@
                 </div>
             </div>
 
-            <button class="bg-pink-600 text-white px-6 rounded-lg font-medium hover:bg-blue-700">Cập nhật</button>
+            <button
+            onclick="updateBookingInfo()"
+            class="bg-pink-600 text-white px-6 rounded-lg font-medium hover:bg-blue-700 transition-transform duration-300 hover:scale-105">
+
+            Cập nhật
+
+            </button>
         </div>
     </div>
 
@@ -53,10 +78,10 @@
         
         <div class="lg:col-span-2 space-y-6">
             <div class="grid grid-cols-3 gap-2 rounded-xl overflow-hidden h-[350px]">
-                <div class="col-span-2 h-full">
+                <div class="col-span-2 h-full transition-transform duration-300 hover:scale-105">
                     <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&auto=format&fit=crop&q=80" alt="Main Room" class="w-full h-full object-cover">
                 </div>
-                <div class="grid grid-rows-2 gap-2 h-full">
+                <div class="grid grid-rows-2 gap-2 h-full transition-transform duration-300 hover:scale-105">
                     <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&auto=format&fit=crop&q=80" alt="Bathroom" class="w-full h-full object-cover">
                 </div>
                 <div class="relative h-full">
@@ -142,24 +167,33 @@
             <div class="border border-gray-200 rounded-lg p-3 grid grid-cols-2 gap-2 text-xs bg-gray-50">
                 <div>
                     <span class="text-gray-400 uppercase font-bold block">Nhận phòng</span>
-                    <span class="font-semibold text-gray-700">10/12/2024</span>
+                    <span id="booking-checkin"
+                        class="font-semibold text-gray-700">
+                        --/--/----
+                    </span>
                 </div>
                 <div class="border-l pl-2">
                     <span class="text-gray-400 uppercase font-bold block">Trả phòng</span>
-                    <span class="font-semibold text-gray-700">10/15/2024</span>
+                    <span id="booking-checkout"
+                        class="font-semibold text-gray-700">
+                        --/--/----
+                    </span>
                 </div>
             </div>
 
-            <button onclick="switchTab('payment')" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-800 transition-all uppercase tracking-wider text-sm">
+            <button onclick="goToPayment()" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-800 transition-all uppercase tracking-wider text-sm">
                 Đặt phòng ngay
             </button>
 
             <div class="space-y-2 text-sm border-t pt-4">
-                <div class="flex justify-between text-gray-600"><span>$1,250 × 3 đêm</span><span>$3,750</span></div>
-                <div class="flex justify-between text-gray-600"><span>Phí dịch vụ</span><span>$120</span></div>
-                <div class="flex justify-between text-gray-600"><span>Thuế phí</span><span>$45</span></div>
+                <div class="flex justify-between text-gray-600">
+                    <span id="room-cost-text">$1,250 × 0 đêm</span>
+                    <span id="room-cost">$0</span>
+                </div>
+                <div class="flex justify-between text-gray-600"><span>Phí dịch vụ</span><span id="service-fee">$120</span></div>
+                <div class="flex justify-between text-gray-600"><span>Thuế phí</span><span id="tax-fee">$45</span></div>
                 <div class="flex justify-between font-bold text-base text-gray-900 border-t pt-2 mt-2">
-                    <span>Tổng cộng</span><span>$3,915</span>
+                    <span>Tổng cộng</span><span id="total-price">$0</span>
                 </div>
             </div>
         </div>
@@ -168,15 +202,15 @@
     <div class="mt-16 border-t pt-8">
         <h2 class="text-xl font-bold mb-6">Các lựa chọn thay thế được đề xuất</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm transition-transform duration-300 hover:scale-105">
                 <img src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?w=400&auto=format&fit=crop&q=80" alt="Royal" class="w-full h-40 object-cover">
                 <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Royal Garden Suite</span><span class="text-blue-600">$950/nt</span></div></div>
             </div>
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm transition-transform duration-300 hover:scale-105">
                 <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&auto=format&fit=crop&q=80" alt="Skyline" class="w-full h-40 object-cover">
                 <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Skyline Penthouse</span><span class="text-blue-600">$2,100/nt</span></div></div>
             </div>
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm transition-transform duration-300 hover:scale-105">
                 <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&auto=format&fit=crop&q=80" alt="Zen" class="w-full h-40 object-cover">
                 <div class="p-4"><div class="flex justify-between font-bold text-sm"><span>Zen Deluxe Room</span><span class="text-blue-600">$660/nt</span></div></div>
             </div>
