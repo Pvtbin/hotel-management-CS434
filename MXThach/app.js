@@ -24,7 +24,7 @@ function switchTab(tabName) {
     // Bước 4: Tự động cuộn trang lên trên cùng (Top) một cách mượt mà khi người dùng bấm chuyển tab
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-// --- DÁN TIẾP VÀO DƯỚI CÙNG FILE APP.JS ĐOẠN NÀY ---
+
 
 /**
  * 1. Hàm tự động cập nhật ngày nhận phòng khi chọn lịch xong
@@ -149,4 +149,140 @@ function submitReview() {
 
     // Tự động ẩn form đi sau khi gửi thành công
     toggleReviewForm();
+}
+/**
+ * 7. Hàm xử lý tự động đổi màu nền khi chọn phương thức thanh toán
+ */
+function handlePaymentMethodChange() {
+    const paymentCards = document.querySelectorAll('.payment-card');
+    const radioButtons = document.querySelectorAll('input[name="payment-method"]');
+
+    radioButtons.forEach((radio, index) => {
+        if (radio.checked) {
+            // Nếu ô này được chọn: Thêm màu xanh, xóa màu xám
+            paymentCards[index].classList.remove('border-gray-200', 'hover:bg-gray-50');
+            paymentCards[index].classList.add('bg-blue-50/50', 'border-blue-200');
+        } else {
+            // Nếu ô này không được chọn: Trả về màu xám, xóa màu xanh
+            paymentCards[index].classList.remove('bg-blue-50/50', 'border-blue-200');
+            paymentCards[index].classList.add('border-gray-200', 'hover:bg-gray-50');
+        }
+    });
+}
+/**
+ * lưu ngày
+ */
+let checkinDate = "";
+let checkoutDate = "";
+
+function formatDate(dateString){
+
+    if(!dateString) return "--/--/----";
+
+    const d = new Date(dateString);
+
+    const day = String(d.getDate()).padStart(2,"0");
+    const month = String(d.getMonth()+1).padStart(2,"0");
+    const year = d.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
+function updateCheckinDate(value){
+
+    checkinDate = value;
+
+    document.getElementById("checkin-display-text").innerText =
+        formatDate(value);
+}
+
+function updateCheckoutDate(value){
+
+    checkoutDate = value;
+
+    document.getElementById("checkout-display-text").innerText =
+        formatDate(value);
+}
+/**
+ * cập nhật
+ */
+const roomPrice = 1250;
+const serviceFee = 120;
+const taxFee = 45;
+
+function updateBookingInfo(){
+
+    if(checkinDate == "" || checkoutDate == ""){
+
+        alert("Vui lòng chọn ngày nhận và ngày trả phòng.");
+
+        return;
+    }
+
+    document.getElementById("booking-checkin").innerText =
+        formatDate(checkinDate);
+
+    document.getElementById("booking-checkout").innerText =
+        formatDate(checkoutDate);
+
+        const start = new Date(checkinDate);
+        const end = new Date(checkoutDate);
+
+        const oneDay = 1000 * 60 * 60 * 24;
+
+        const nights = Math.ceil((end - start) / oneDay);
+
+        if (nights <= 0) {
+            alert("Ngày trả phòng phải lớn hơn ngày nhận phòng!");
+            return;
+        }
+
+        const roomCost = roomPrice * nights;
+        const total = roomCost + serviceFee + taxFee;
+
+        document.getElementById("room-cost-text").innerText =
+            `$${roomPrice.toLocaleString()} × ${nights} đêm`;
+
+        document.getElementById("room-cost").innerText =
+            `$${roomCost.toLocaleString()}`;
+
+        document.getElementById("total-price").innerText =
+            `$${total.toLocaleString()}`;
+}
+/**
+ * hóa đơn thanh toán
+ */
+function formatMoney(number){
+
+    return number.toLocaleString("vi-VN") + " $";
+
+}
+
+function goToPayment(){
+
+    const start = new Date(checkinDate);
+    const end = new Date(checkoutDate);
+
+    const nights = Math.ceil((end - start) / (1000*60*60*24));
+
+    const roomCost = roomPrice * nights;
+
+    // 10% phí dịch vụ + thuế
+    const fee = roomCost * 0.1;
+
+    const total = roomCost + fee;
+
+    document.getElementById("payment-room-text").innerText =
+        `Giá phòng (${nights} đêm)`;
+
+    document.getElementById("payment-room-price").innerText =
+        formatMoney(roomCost);
+
+    document.getElementById("payment-fee").innerText =
+        formatMoney(fee);
+
+    document.getElementById("payment-total").innerText =
+        formatMoney(total);
+
+    switchTab("payment");
 }
